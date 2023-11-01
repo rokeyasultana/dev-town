@@ -128,7 +128,7 @@ const ProductsList = () => {
   };
 
   return (
-    <Container>
+    <div>
       <Banner>
         <BannerImage
           src="https://img.freepik.com/free-photo/front-view-smiley-woman-with-clothes_23-2149731146.jpg"
@@ -136,62 +136,88 @@ const ProductsList = () => {
         />
         <BannerText>
           <h2>Special Offer</h2>
-          <p className="offer">Buy 1 Get 1 Free on Clothing!</p>
+          <p className="offer">Buy 1 Get 1 Free on Food Products!</p>
           <p>
-            Don't miss out on our exclusive promotion – Buy any clothing item
-            and get another one absolutely free! Shop today and save.
+            Don't miss out on our exclusive promotion – Buy any Food item and
+            get another one absolutely free! Shop today and save.
           </p>
         </BannerText>
       </Banner>
-      <h1>All Products</h1>
-      <Filters>
-        <Filter>
-          <label>Filter by Category:</label>
-          <select onChange={handleChangeCategory}>
-            <option value="all">All</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Home Decor">Home Decor</option>
-            <option value="Food">Food</option>
-          </select>
-        </Filter>
-        <Filter>
-          <label>Sort by:</label>
-          <select onChange={handleChangeSort}>
-            <option value="price-asc">Price (Low to High)</option>
-            <option value="price-desc">Price (High to Low)</option>
-          </select>
-        </Filter>
-      </Filters>
-      <ProductList>
-        {productsToDisplay.map((product) => (
-          <Product key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <div className="product-details">
-              <p className="price">Price: ${product.price}</p>
-              <h3>{product.title}</h3>
-              <p>{product.description}</p>
-            </div>
-          </Product>
-        ))}
-      </ProductList>
-      <Pagination>
-        <p>
-          Page {currentPage} of {totalPages}
-        </p>
-        <PageButtons>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <PageButton
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              active={index + 1 === currentPage}
-            >
-              {index + 1}
-            </PageButton>
+
+      <Container>
+        <h1>All Products</h1>
+        <Filters>
+          <Filter>
+            <label>Filter by Category:</label>
+            <select onChange={handleChangeCategory}>
+              <option value="all">All</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Home Decor">Home Decor</option>
+              <option value="Food">Food</option>
+            </select>
+          </Filter>
+          <Filter>
+            <label>Sort by:</label>
+            <select onChange={handleChangeSort}>
+              <option value="price-asc">Price (Low to High)</option>
+              <option value="price-desc">Price (High to Low)</option>
+            </select>
+          </Filter>
+        </Filters>
+        <ProductList>
+          {productsToDisplay.map((product) => (
+            <Product key={product.id}>
+              <img src={product.image} alt={product.title} />
+              <div className="product-details">
+                <p className="price">Price: ${product.price}</p>
+                <h3>{product.title}</h3>
+                <p>{product.description}</p>
+              </div>
+            </Product>
           ))}
-        </PageButtons>
-      </Pagination>
-    </Container>
+        </ProductList>
+        <Pagination>
+          <p>
+            Page {currentPage} of {totalPages}
+          </p>
+          <PageButtons>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <PageButton
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                active={index + 1 === currentPage}
+              >
+                {index + 1}
+              </PageButton>
+            ))}
+          </PageButtons>
+        </Pagination>
+      </Container>
+      <FooterContainer>
+        <FooterContent>
+          <div>
+            <h4>Contact Us</h4>
+            <p>Email: contact@example.com</p>
+            <p>Phone: +123-456-7890</p>
+          </div>
+          <div>
+            <h4>Address</h4>
+            <p>123 Main Street</p>
+            <p>City, State 12345</p>
+          </div>
+          <div>
+            <h4>Follow Us</h4>
+            <SocialLinks>
+              <a href="#" className="link">Facebook</a>
+              <a href="#" className="link">Twitter</a>
+              <a href="#" className="link">Instagram</a>
+            </SocialLinks>
+          </div>
+        </FooterContent>
+        <Copyright>&copy; 2023 Your Website Name</Copyright>
+      </FooterContainer>
+    </div>
   );
 };
 
@@ -269,7 +295,8 @@ const PageButton = styled.button`
   }
 `;
 const Banner = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: space-between;
   background-color: #f0f0f0;
@@ -277,13 +304,15 @@ const Banner = styled.div`
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 0 5px coral;
-  gap: 50px;
+  margin-top: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
   margin-bottom: 50px;
 `;
 
 const BannerImage = styled.img`
-  max-width: 40%;
-  height: auto;
+  max-width: 100%;
+  height: 300px;
   border-radius: 5px;
 `;
 
@@ -294,4 +323,32 @@ const BannerText = styled.div`
     color: coral;
     font-size: 20px;
   }
+`;
+const FooterContainer = styled.footer`
+  background-color:black;
+  color: #fff;
+  padding: 20px 0;
+`;
+
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-around;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 10px;
+  .link{
+    color: Tomato;
+ 
+  }
+`;
+
+const Copyright = styled.p`
+  text-align: center;
+  margin-top: 20px;
+  color:Coral;
 `;
