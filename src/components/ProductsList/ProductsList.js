@@ -1,24 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 const productsData = [
+  {
+    id: 1,
+    title: "Ultra Cotton Tee",
+    category: "Clothing",
+    description:
+      "Environmentally-friendly manufactured cotton that gives thicker vintage feel to the shirt. Long lasting garment suitable for everyday use",
+    price: 18.28,
+    image:
+      "https://images-api.printify.com/mockup/653e669f072e35d38108bf29/21889/97933/unisex-ultra-cotton-tee_1698588344907.jpg?camera_label=front&s=400",
+  },
+  {
+    id: 2,
+    title: "Midweight Cotton Tee",
+    category: "Clothing",
+    description:
+      "Solid colors are 100% cotton, heather colors are 50% cotton, 50% polyester ), antique colors are 90% cotton, 10% polyester",
+    price: 19.3,
+    image:
+      "https://images.printify.com/mockup/653e51121113b2d079071cfc/66517/88?s=608&t=1698582827000",
+  },
+  {
+    id: 3,
+    title: "HINISO Mini Projector ",
+    category: "Electronics",
+    description:
+      "No need to clean the lens anymore. The dust-proof 4K projector engineers a fully-sealed optical engine that dust would never go behind the lens,  other optical components. ",
+    price: 519.3,
+    image: "https://m.media-amazon.com/images/I/81ChzbwaNIL._AC_UL320_.jpg",
+  },
 
-  { id: 1, title: 'Ultra Cotton Tee', category: 'Clothing', description: 'Environmentally-friendly manufactured cotton that gives thicker vintage feel to the shirt. Long lasting garment suitable for everyday use', price: 18.28, image: 'https://images-api.printify.com/mockup/653e669f072e35d38108bf29/21889/97933/unisex-ultra-cotton-tee_1698588344907.jpg?camera_label=front&s=400' },
-  { id: 2, title: 'Midweight Cotton Tee', category: 'Clothing', description: 'Solid colors are 100% cotton, heather colors are 50% cotton, 50% polyester ), antique colors are 90% cotton, 10% polyester', price: 19.30, image: 'https://images.printify.com/mockup/653e51121113b2d079071cfc/66517/88?s=608&t=1698582827000' },
-  { id: 3, title: 'HINISO Mini Projector ', category: 'Electronics', description: 'No need to clean the lens anymore. The dust-proof 4K projector engineers a fully-sealed optical engine that dust would never go behind the lens,  other optical components. ', price: 519.30, image: 'https://m.media-amazon.com/images/I/81ChzbwaNIL._AC_UL320_.jpg' },
- 
-  { id: 4, title: 'HP M120 Wireless Mouse', category: 'Electronics', description: 'Work effortlessly by dragging and dropping across devices with multi-OS compatibility, supporting Windows 10/11 and macOS. ', price: 519.30, image: 'https://m.media-amazon.com/images/I/61Zv+ufF51L._AC_UL320_.jpg' },
- 
-  { id: 5, title: 'White Vase/Office Desk Flower Vase', category: 'Home Decor', description: 'THE CLASS A CERAMIC VASES - The flower vase is made of quality class A ceramic with glazed finish, with a smooth surface and a clean and solid white,  and modern style.', price: 20, image: 'https://m.media-amazon.com/images/I/61CHZ7P6WnL._SX679_.jpg' },
- 
-  { id: 6, title: 'UHUD CRAFTS Hanging Shelves',category: 'Home Decor', description: 'No need for DIY stress. The ready-to-use hanging shelves come complete with easy to use hooks & wall anchors.  ', price: 519.30, image: 'https://m.media-amazon.com/images/I/61I3xo6idhL._AC_UL320_.jpg' },
- 
+  {
+    id: 4,
+    title: "HP M120 Wireless Mouse",
+    category: "Electronics",
+    description:
+      "Work effortlessly by dragging and dropping across devices with multi-OS compatibility, supporting Windows 10/11 and macOS. ",
+    price: 519.3,
+    image: "https://m.media-amazon.com/images/I/61Zv+ufF51L._AC_UL320_.jpg",
+  },
+
+  {
+    id: 5,
+    title: "White Vase Flower Vase",
+    category: "Home Decor",
+    description:
+      "THE CLASS A CERAMIC VASES - The flower vase is made of quality class A ceramic with glazed finish, with a smooth surface and a clean and solid white,  and modern style.",
+    price: 20,
+    image: "https://m.media-amazon.com/images/I/61CHZ7P6WnL._SX679_.jpg",
+  },
+
+  {
+    id: 6,
+    title: "UHUD CRAFTS Hanging Shelves",
+    category: "Home Decor",
+    description:
+      "No need for DIY stress. The ready-to-use hanging shelves come complete with easy to use hooks & wall anchors.  ",
+    price: 519.3,
+    image: "https://m.media-amazon.com/images/I/61I3xo6idhL._AC_UL320_.jpg",
+  },
+  ,
+  {
+    id: 7,
+    title: "California Almonds ",
+    category: "Food",
+    description:
+      "High protein, dietary fiber, no gluten, no GMO, zero trans fat, zero cholesterol Rich source of omega-3, anti oxidants and vitamins, calcium, iron and magnesium ",
+    price: 10.0,
+    image: "https://m.media-amazon.com/images/I/71M6kMdnqTL._SL1500_.jpg",
+  },
+
+  {
+    id: 8,
+    title: "Schezwan Fried Rice",
+    category: "Food",
+    description:
+      "YUM MEAL WITH GOODNESS: Tata Sampann Yumside has a range of Ready to Eat meals that you can serve in 60 seconds – Just heat and eat! ",
+    price: 9.0,
+    image: "https://m.media-amazon.com/images/I/61SwhHGVryL._SX679_.jpg",
+  },
 ];
 
 const ProductsList = () => {
   const [products, setProducts] = useState(productsData);
-  const [categoryFilter, setCategoryFilter] = useState('all');
-  const [sortOption, setSortOption] = useState('price-asc');
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [sortOption, setSortOption] = useState("price-asc");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -36,10 +104,13 @@ const ProductsList = () => {
     const endIndex = startIndex + itemsPerPage;
 
     const filteredProducts = products
-      .filter((product) => categoryFilter === 'all' || product.category === categoryFilter)
+      .filter(
+        (product) =>
+          categoryFilter === "all" || product.category === categoryFilter
+      )
       .sort((a, b) => {
-        if (sortOption === 'price-asc') return a.price - b.price;
-        if (sortOption === 'price-desc') return b.price - a.price;
+        if (sortOption === "price-asc") return a.price - b.price;
+        if (sortOption === "price-desc") return b.price - a.price;
         return 0;
       });
 
@@ -58,6 +129,21 @@ const ProductsList = () => {
 
   return (
     <Container>
+      <Banner>
+        <BannerImage
+          src="https://img.freepik.com/free-photo/front-view-smiley-woman-with-clothes_23-2149731146.jpg"
+          alt="Product Image"
+        />
+        <BannerText>
+          <h2>Special Offer</h2>
+          <p className="offer">Buy 1 Get 1 Free on Clothing!</p>
+          <p>
+            Don't miss out on our exclusive promotion – Buy any clothing item
+            and get another one absolutely free! Shop today and save.
+          </p>
+        </BannerText>
+      </Banner>
+      <h1>All Products</h1>
       <Filters>
         <Filter>
           <label>Filter by Category:</label>
@@ -65,6 +151,8 @@ const ProductsList = () => {
             <option value="all">All</option>
             <option value="Electronics">Electronics</option>
             <option value="Clothing">Clothing</option>
+            <option value="Home Decor">Home Decor</option>
+            <option value="Food">Food</option>
           </select>
         </Filter>
         <Filter>
@@ -79,14 +167,18 @@ const ProductsList = () => {
         {productsToDisplay.map((product) => (
           <Product key={product.id}>
             <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>{product.description}</p>
-            <p className='price'>Price: ${product.price}</p>
+            <div className="product-details">
+              <p className="price">Price: ${product.price}</p>
+              <h3>{product.title}</h3>
+              <p>{product.description}</p>
+            </div>
           </Product>
         ))}
       </ProductList>
       <Pagination>
-        <p>Page {currentPage} of {totalPages}</p>
+        <p>
+          Page {currentPage} of {totalPages}
+        </p>
         <PageButtons>
           {Array.from({ length: totalPages }, (_, index) => (
             <PageButton
@@ -135,20 +227,22 @@ const ProductList = styled.div`
 
 const Product = styled.div`
   border: 1px solid #ddd;
-  padding: 10px; 
+  padding: 10px;
   border-radius: 5px;
-  text-align:left;
+  text-align: left;
   height: 450px;
 
   img {
     max-width: 100%;
     height: 200px;
-    border-bottom:1px solid #ddd;
+    border-bottom: 1px solid #ddd;
   }
-  .price{
-    font-weight:bold;
+  .price {
+    font-weight: bold;
+    text-align: right;
+    color: coral;
   }
-`
+`;
 const Pagination = styled.div`
   display: flex;
   justify-content: space-between;
@@ -162,15 +256,42 @@ const PageButtons = styled.div`
 `;
 
 const PageButton = styled.button`
-  background: ${(props) => (props.active ? 'blue' : 'transparent')};
-  color: ${(props) => (props.active ? 'white' : 'black')};
+  background: ${(props) => (props.active ? "coral" : "transparent")};
+  color: ${(props) => (props.active ? "white" : "black")};
   border: 1px solid #ddd;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background: ${(props) => (props.active ? 'blue' : '#ddd')};
-    color: ${(props) => (props.active ? 'white' : 'black')};
+    background: ${(props) => (props.active ? "coral" : "#ddd")};
+    color: ${(props) => (props.active ? "white" : "black")};
+  }
+`;
+const Banner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px coral;
+  gap: 50px;
+  margin-bottom: 50px;
+`;
+
+const BannerImage = styled.img`
+  max-width: 40%;
+  height: auto;
+  border-radius: 5px;
+`;
+
+const BannerText = styled.div`
+  flex: 1;
+  text-align: left;
+  .offer {
+    color: coral;
+    font-size: 20px;
   }
 `;
