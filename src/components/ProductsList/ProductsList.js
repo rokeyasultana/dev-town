@@ -129,6 +129,20 @@ const ProductsList = () => {
 
   return (
     <div>
+      <Navbar>
+        <h1>GlobalCart</h1>
+        <NavLinks>
+          <NavLink>
+            <a href="#">Home</a>
+          </NavLink>
+          <NavLink>
+            <a href="#">Product</a>
+          </NavLink>
+          <NavLink>
+            <a href="#">Contact</a>
+          </NavLink>
+        </NavLinks>
+      </Navbar>
       <Banner>
         <BannerImage
           src="https://img.freepik.com/free-photo/front-view-smiley-woman-with-clothes_23-2149731146.jpg"
@@ -209,9 +223,15 @@ const ProductsList = () => {
           <div>
             <h4>Follow Us</h4>
             <SocialLinks>
-              <a href="#" className="link">Facebook</a>
-              <a href="#" className="link">Twitter</a>
-              <a href="#" className="link">Instagram</a>
+              <a href="#" className="link">
+                Facebook
+              </a>
+              <a href="#" className="link">
+                Twitter
+              </a>
+              <a href="#" className="link">
+                Instagram
+              </a>
             </SocialLinks>
           </div>
         </FooterContent>
@@ -222,6 +242,42 @@ const ProductsList = () => {
 };
 
 export default ProductsList;
+
+const Navbar = styled.nav`
+  background-color: coral;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding-left: 150px;
+  height: 50px;
+  @media (max-width: 768px) {
+    padding-left: 50px;
+  }
+`;
+
+const NavLinks = styled.ul`
+  list-style: none;
+  padding: 0;
+  display: flex;
+  padding-right: 150px;
+  font-size: 18px;
+  @media (max-width: 768px) {
+    padding-right: 5px;
+  }
+`;
+
+const NavLink = styled.li`
+  margin-right: 20px;
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
 
 const Container = styled.div`
   max-width: 800px;
@@ -257,7 +313,7 @@ const Product = styled.div`
   border-radius: 5px;
   text-align: left;
   height: 450px;
-
+  box-shadow: 0 0 5px coral;
   img {
     max-width: 100%;
     height: 200px;
@@ -305,28 +361,44 @@ const Banner = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 5px coral;
   margin-top: 50px;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 50px;
+  margin-right: 50px;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    margin: 10px;
+  }
 `;
 
 const BannerImage = styled.img`
   max-width: 100%;
   height: 300px;
   border-radius: 5px;
+  padding-left: 150px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding-left: 0px;
+  }
 `;
 
 const BannerText = styled.div`
   flex: 1;
   text-align: left;
+  padding-right: 150px;
+  font-size: 20px;
   .offer {
     color: coral;
     font-size: 20px;
   }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding-right: 0px;
+  }
 `;
 const FooterContainer = styled.footer`
-  background-color:black;
-  color: #fff;
+  background-color: coral;
+  color: white;
   padding: 20px 0;
 `;
 
@@ -341,14 +413,13 @@ const FooterContent = styled.div`
 const SocialLinks = styled.div`
   display: flex;
   gap: 10px;
-  .link{
-    color: Tomato;
- 
+  .link {
+    color: white;
   }
 `;
 
 const Copyright = styled.p`
   text-align: center;
   margin-top: 20px;
-  color:Coral;
+  color: black;
 `;
